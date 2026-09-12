@@ -1,0 +1,8 @@
+{
+  "name": "KALKULATOR POLA ROK SISTEM SEDERHANA",
+  "description": "Aplikasi penghitung otomatis formula pola ROK dasar SISTEM SEDERHANA",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

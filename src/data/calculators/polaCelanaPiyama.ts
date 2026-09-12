@@ -1,0 +1,381 @@
+import { BodyMeasurement, PatternCalculationItem, SizePreset, PatternModuleInfo } from '../../types/pattern';
+import { CalculatorConfig } from './types';
+
+/**
+ * POLA DASAR CELANA PIYAMA — BASIC PAJAMA PANTS PATTERN CALCULATOR
+ * 
+ * Standalone module for drafting basic loose pajama pants pattern with elastic waistband.
+ * Identifier: 'pola-celana-piyama' (aliases: 'celana-piyama', 'celana', 'pajama-pants')
+ * Title: Pola Dasar Celana Piyama
+ * Subtitle: Kalkulator Pola Dasar Celana Piyama
+ */
+
+export const POLA_CELANA_PIYAMA_MODULE: PatternModuleInfo = {
+  id: 'pola-celana-piyama',
+  studioName: 'LA MODA LEARNING STUDIO',
+  appTitle: 'Pattern Calculator',
+  moduleTitle: 'Pola Dasar Celana Piyama',
+  systemSubtitle: 'Kalkulator Pola Dasar Celana Piyama',
+};
+
+// 1. 7 Body Measurements Configuration Array (Actual Body Measurements Only)
+export const POLA_CELANA_PIYAMA_MEASUREMENTS: BodyMeasurement[] = [
+  {
+    id: 'panjangCelana',
+    number: 1,
+    name: 'Panjang Celana',
+    fieldKey: 'panjangCelana',
+    value: 60,
+    unit: 'cm',
+    description: 'Diukur dari batas garis pinggang ke bawah sampai batas panjang celana yang diinginkan.',
+    svgHighlightId: 'line-panjang-celana',
+    category: 'length',
+    group: 'primary',
+  },
+  {
+    id: 'lingkarPinggang',
+    number: 2,
+    name: 'Lingkar Pinggang',
+    fieldKey: 'lingkarPinggang',
+    value: 70,
+    unit: 'cm',
+    description: 'Diukur pas melingkar pada pinggang terkecil tanpa tambahan kelonggaran.',
+    svgHighlightId: 'line-lingkar-pinggang',
+    category: 'circumference',
+    group: 'primary',
+  },
+  {
+    id: 'lingkarPanggul',
+    number: 3,
+    name: 'Lingkar Panggul',
+    fieldKey: 'lingkarPanggul',
+    value: 90,
+    unit: 'cm',
+    description: 'Diukur pas melingkar pada panggul terbesar tanpa tambahan kelonggaran.',
+    svgHighlightId: 'line-lingkar-panggul',
+    category: 'circumference',
+    group: 'primary',
+  },
+  {
+    id: 'tinggiDuduk',
+    number: 4,
+    name: 'Tinggi Duduk',
+    fieldKey: 'tinggiDuduk',
+    value: 18,
+    unit: 'cm',
+    description: 'Diukur dalam posisi duduk tegak di atas kursi datar, dari garis pinggang tegak lurus sampai alas duduk.',
+    svgHighlightId: 'line-tinggi-duduk',
+    category: 'height',
+    group: 'primary',
+  },
+  {
+    id: 'lingkarUjungCelana',
+    number: 5,
+    name: 'Lingkar Ujung Celana / Lingkar Lutut',
+    fieldKey: 'lingkarUjungCelana',
+    value: 38,
+    unit: 'cm',
+    description: 'Diukur melingkar pas pada batas ujung celana / lingkar lutut.',
+    svgHighlightId: 'line-lingkar-ujung-celana',
+    category: 'circumference',
+    group: 'primary',
+  },
+  {
+    id: 'lingkarPipaKaki',
+    number: 6,
+    name: 'Lingkar Pipa Kaki',
+    fieldKey: 'lingkarPipaKaki',
+    value: 36,
+    unit: 'cm',
+    description: 'Diukur melingkar pas pada batas bukaan bawah pipa celana.',
+    svgHighlightId: 'line-lingkar-pipa-kaki',
+    category: 'circumference',
+    group: 'primary',
+  },
+  {
+    id: 'lingkarPesak',
+    number: 7,
+    name: 'Lingkar Pesak',
+    fieldKey: 'lingkarPesak',
+    value: 65,
+    unit: 'cm',
+    description: 'Diukur dari batas pinggang depan melewati selangkangan/pesak sampai batas pinggang belakang.',
+    svgHighlightId: 'line-lingkar-pesak',
+    category: 'circumference',
+    group: 'primary',
+  },
+];
+
+// 2. Standard Size Presets (S, M, L, XL)
+export const POLA_CELANA_PIYAMA_PRESETS: SizePreset[] = [
+  {
+    id: 'size-s',
+    name: 'Ukuran S (Small)',
+    badge: 'S',
+    description: 'Proporsi tubuh standar ukuran Small La Moda',
+    values: {
+      panjangCelana: 58,
+      lingkarPinggang: 66,
+      lingkarPanggul: 86,
+      tinggiDuduk: 17,
+      lingkarUjungCelana: 36,
+      lingkarPipaKaki: 34,
+      lingkarPesak: 62,
+    },
+  },
+  {
+    id: 'size-m',
+    name: 'Ukuran M (Medium)',
+    badge: 'M',
+    description: 'Proporsi tubuh standar ukuran Medium La Moda',
+    values: {
+      panjangCelana: 60,
+      lingkarPinggang: 70,
+      lingkarPanggul: 90,
+      tinggiDuduk: 18,
+      lingkarUjungCelana: 38,
+      lingkarPipaKaki: 36,
+      lingkarPesak: 65,
+    },
+  },
+  {
+    id: 'size-l',
+    name: 'Ukuran L (Large)',
+    badge: 'L',
+    description: 'Proporsi tubuh standar ukuran Large La Moda',
+    values: {
+      panjangCelana: 62,
+      lingkarPinggang: 76,
+      lingkarPanggul: 96,
+      tinggiDuduk: 19,
+      lingkarUjungCelana: 40,
+      lingkarPipaKaki: 38,
+      lingkarPesak: 68,
+    },
+  },
+  {
+    id: 'size-xl',
+    name: 'Ukuran XL (Extra Large)',
+    badge: 'XL',
+    description: 'Proporsi tubuh standar ukuran Extra Large La Moda',
+    values: {
+      panjangCelana: 64,
+      lingkarPinggang: 82,
+      lingkarPanggul: 102,
+      tinggiDuduk: 20,
+      lingkarUjungCelana: 42,
+      lingkarPipaKaki: 40,
+      lingkarPesak: 71,
+    },
+  },
+];
+
+// 3. Pattern Calculations - Official Formulas
+export const POLA_CELANA_PIYAMA_CALCULATIONS: PatternCalculationItem[] = [
+  {
+    id: 'calc-celana-ab',
+    sequence: 1,
+    points: 'A – B',
+    pointIdentifier: 'A-B',
+    patternSide: 'front',
+    nameKey: 'celana_ab',
+    type: 'value',
+    calculate: (m) => ((m.lingkarPanggul || 0) + 10) / 2,
+    formulaDisplay: '½ (Lingkar Panggul + 10 cm)',
+    formulaExplanation: '½ × (Lingkar Panggul + 10 cm)',
+    referencedMeasurementNumbers: [3],
+    referencedMeasurementNames: ['Lingkar Panggul'],
+    patternPoints: ['A', 'B'],
+    lineIdentifier: 'line-A-B',
+    notes: '½ (Lingkar Panggul + 10 cm)',
+  },
+  {
+    id: 'calc-celana-cd',
+    sequence: 2,
+    points: 'C – D',
+    pointIdentifier: 'C-D',
+    patternSide: 'front',
+    nameKey: 'celana_cd',
+    type: 'value',
+    calculate: (m) => ((m.lingkarPanggul || 0) + 10) / 2,
+    formulaDisplay: '½ (Lingkar Panggul + 10 cm)',
+    formulaExplanation: '½ × (Lingkar Panggul + 10 cm) (Sama dengan A – B)',
+    referencedMeasurementNumbers: [3],
+    referencedMeasurementNames: ['Lingkar Panggul'],
+    patternPoints: ['C', 'D'],
+    lineIdentifier: 'line-C-D',
+    notes: '½ (Lingkar Panggul + 10 cm)',
+  },
+  {
+    id: 'calc-celana-ef',
+    sequence: 3,
+    points: 'E – F',
+    pointIdentifier: 'E-F',
+    patternSide: 'front',
+    nameKey: 'celana_ef',
+    type: 'value',
+    calculate: (m) => (m.tinggiDuduk || 0) + 7,
+    formulaDisplay: 'Tinggi Duduk + 7 cm',
+    formulaExplanation: 'Tinggi Duduk + 7 cm (Kelonggaran Konstruksi)',
+    referencedMeasurementNumbers: [4],
+    referencedMeasurementNames: ['Tinggi Duduk'],
+    patternPoints: ['E', 'F'],
+    lineIdentifier: 'line-E-F',
+    notes: 'Tinggi Duduk + 7 cm',
+  },
+  {
+    id: 'calc-celana-dg',
+    sequence: 4,
+    points: 'D – G',
+    pointIdentifier: 'D-G',
+    patternSide: 'front',
+    nameKey: 'celana_dg',
+    type: 'value',
+    calculate: (m) => ((m.lingkarPanggul || 0) / 10) + 2.5,
+    formulaDisplay: '(1/10 × Lingkar Panggul) + 2 ½ cm',
+    formulaExplanation: '(1/10 × Lingkar Panggul) + 2,5 cm',
+    referencedMeasurementNumbers: [3],
+    referencedMeasurementNames: ['Lingkar Panggul'],
+    patternPoints: ['D', 'G'],
+    lineIdentifier: 'line-D-G',
+    notes: '(1/10 × Lingkar Panggul) + 2,5 cm',
+  },
+  {
+    id: 'calc-celana-ch',
+    sequence: 5,
+    points: 'C – H',
+    pointIdentifier: 'C-H',
+    patternSide: 'front',
+    nameKey: 'celana_ch',
+    type: 'value',
+    calculate: (m) => (((m.lingkarPanggul || 0) / 10) + 2.5) / 2,
+    formulaDisplay: '½ (D – G)',
+    formulaExplanation: '½ × (D – G)',
+    referencedMeasurementNumbers: [3],
+    referencedMeasurementNames: ['Lingkar Panggul'],
+    patternPoints: ['C', 'H'],
+    lineIdentifier: 'line-C-H',
+    notes: '½ × (D – G)',
+  },
+  {
+    id: 'calc-celana-ei',
+    sequence: 6,
+    points: 'E – I',
+    pointIdentifier: 'E-I',
+    patternSide: 'front',
+    nameKey: 'celana_ei',
+    type: 'value',
+    calculate: (m) => m.panjangCelana || 0,
+    formulaDisplay: 'Panjang Celana',
+    formulaExplanation: 'Panjang Celana',
+    referencedMeasurementNumbers: [1],
+    referencedMeasurementNames: ['Panjang Celana'],
+    patternPoints: ['E', 'I'],
+    lineIdentifier: 'line-E-I',
+    notes: 'Panjang Celana',
+  },
+  {
+    id: 'calc-celana-ij',
+    sequence: 7,
+    points: 'I – J',
+    pointIdentifier: 'I-J',
+    patternSide: 'front',
+    nameKey: 'celana_ij',
+    type: 'value',
+    calculate: (m) => ((m.lingkarPipaKaki || 0) / 2) - 2,
+    formulaDisplay: '½ Lingkar Pipa Kaki − 2 cm',
+    formulaExplanation: '(½ × Lingkar Pipa Kaki) − 2 cm',
+    referencedMeasurementNumbers: [6],
+    referencedMeasurementNames: ['Lingkar Pipa Kaki'],
+    patternPoints: ['I', 'J'],
+    lineIdentifier: 'line-I-J',
+    notes: '½ Lingkar Pipa Kaki − 2 cm',
+  },
+  {
+    id: 'calc-celana-ik',
+    sequence: 8,
+    points: 'I – K',
+    pointIdentifier: 'I-K',
+    patternSide: 'front',
+    nameKey: 'celana_ik',
+    type: 'value',
+    calculate: (m) => ((m.lingkarPipaKaki || 0) / 2) + 2,
+    formulaDisplay: '½ Lingkar Pipa Kaki + 2 cm',
+    formulaExplanation: '(½ × Lingkar Pipa Kaki) + 2 cm',
+    referencedMeasurementNumbers: [6],
+    referencedMeasurementNames: ['Lingkar Pipa Kaki'],
+    patternPoints: ['I', 'K'],
+    lineIdentifier: 'line-I-K',
+    notes: '½ Lingkar Pipa Kaki + 2 cm',
+  },
+  {
+    id: 'calc-celana-b',
+    sequence: 9,
+    points: 'B',
+    pointIdentifier: 'B-raise',
+    patternSide: 'front',
+    nameKey: 'celana_b',
+    type: 'action',
+    actionType: 'raise1cm',
+    fixedValue: 3,
+    formulaDisplay: 'Naik 3 cm',
+    formulaExplanation: 'Titik B dinaikkan 3 cm tegak lurus untuk kelonggaran pinggang belakang celana',
+    referencedMeasurementNumbers: [],
+    referencedMeasurementNames: [],
+    patternPoints: ['B'],
+    lineIdentifier: 'line-B-raise',
+    notes: 'Naik 3 cm',
+  },
+];
+
+export const POLA_CELANA_PIYAMA_FRONT_CALCULATIONS: PatternCalculationItem[] = POLA_CELANA_PIYAMA_CALCULATIONS;
+export const POLA_CELANA_PIYAMA_BACK_CALCULATIONS: PatternCalculationItem[] = [];
+
+export const POLA_CELANA_PIYAMA_IMPORTANT_NOTES: string[] = [
+  'Semua ukuran diambil pas pada tubuh, tanpa tambahan kelonggaran.',
+  'Tambahan untuk kebutuhan konstruksi pola dihitung otomatis oleh aplikasi:',
+  '1. Lingkar Panggul pola = Lingkar Panggul + 10 cm (Kelonggaran panggul)',
+  '2. A – B = C – D = ½ × Lingkar Panggul pola',
+  '3. E – F = Tinggi Duduk + 7 cm (Kelonggaran tinggi pesak)',
+  '4. D – G = (1/10 × Lingkar Panggul) + 2,5 cm (Pesak belakang)',
+  '5. C – H = ½ × (D – G) (Pesak depan)',
+  '6. E – I = Panjang Celana',
+  '7. I – J = ½ Lingkar Pipa Kaki − 2 cm (Bukaan bawah depan)',
+  '8. I – K = ½ Lingkar Pipa Kaki + 2 cm (Bukaan bawah belakang)',
+  '9. B = Naik 3 cm (Kenyamanan pinggang belakang saat duduk)',
+];
+
+export const POLA_CELANA_PIYAMA_DEFAULT_DESCRIPTION = `[POLA DASAR CELANA PIYAMA]
+1. Kerangka Pinggang & Panggul:
+   - A – B = C – D = ½ (Lingkar Panggul + 10 cm)
+2. Garis Pesak (Tinggi Duduk Pola):
+   - E – F = Tinggi Duduk + 7 cm
+3. Bentukan Pesak:
+   - D – G = (1/10 × Lingkar Panggul) + 2,5 cm (Pesak Belakang)
+   - C – H = ½ × (D – G) (Pesak Depan)
+4. Panjang Celana & Bukaan Bawah Pipa:
+   - E – I = Panjang Celana
+   - I – J = ½ Lingkar Pipa Kaki − 2 cm (Pipa Depan)
+   - I – K = ½ Lingkar Pipa Kaki + 2 cm (Pipa Belakang)
+5. Kenaikan Pinggang Belakang:
+   - B = Naik 3 cm`;
+
+export const POLA_CELANA_PIYAMA_CONFIG: CalculatorConfig = {
+  id: 'pola-celana-piyama',
+  name: 'Pola Dasar Celana Piyama',
+  systemSubtitle: 'Kalkulator Pola Dasar Celana Piyama',
+  garmentCategory: 'celana',
+  systemId: 'piyama',
+  moduleInfo: POLA_CELANA_PIYAMA_MODULE,
+  measurements: POLA_CELANA_PIYAMA_MEASUREMENTS,
+  presets: POLA_CELANA_PIYAMA_PRESETS,
+  calculations: POLA_CELANA_PIYAMA_CALCULATIONS,
+  frontCalculations: POLA_CELANA_PIYAMA_FRONT_CALCULATIONS,
+  backCalculations: POLA_CELANA_PIYAMA_BACK_CALCULATIONS,
+  importantNotes: POLA_CELANA_PIYAMA_IMPORTANT_NOTES,
+  defaultImages: {
+    measurementGuideImage: '',
+    patternImage: '',
+  },
+  defaultPatternDescription: POLA_CELANA_PIYAMA_DEFAULT_DESCRIPTION,
+};

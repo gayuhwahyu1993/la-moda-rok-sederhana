@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "Calculator": {
+      "title": "Calculator Instructional Images",
+      "description": "Stores image references and metadata for pattern calculators (rok, badan, lengan, dress, blouse)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Calculator slug identifier (e.g. rok, badan, lengan)" },
+        "name": { "type": "string", "description": "Display name of the pattern calculator" },
+        "measurementGuideImage": { "type": "string", "description": "URL or storage reference to measurement guide illustration" },
+        "patternImage": { "type": "string", "description": "URL or storage reference to technical pattern image" },
+        "dressmakingBackPatternImage": { "type": "string", "description": "URL to Back Pattern blueprint for Dressmaking bodice" },
+        "dressmakingFrontPatternImage": { "type": "string", "description": "URL to Front Pattern blueprint for Dressmaking bodice" },
+        "dressmakingSideDartImage": { "type": "string", "description": "URL to Side Dart Detail illustration for Dressmaking bodice" },
+        "sideDartDetailImage": { "type": "string", "description": "URL to Side Dart Detail illustration for Dressmaking bodice" },
+        "frontPatternDescription": { "type": "string", "description": "Step by step instructions for Front pattern (Indonesian)" },
+        "frontPatternDescription_en": { "type": "string", "description": "Step by step instructions for Front pattern (English)" },
+        "backPatternDescription": { "type": "string", "description": "Step by step instructions for Back pattern (Indonesian)" },
+        "backPatternDescription_en": { "type": "string", "description": "Step by step instructions for Back pattern (English)" },
+        "patternDescription": { "type": "string", "description": "Legacy combined step by step instructions (Indonesian)" },
+        "patternDescription_en": { "type": "string", "description": "English step by step instructions for single pattern" },
+        "tier4PatternDescription": { "type": "string", "description": "Step by step instructions for Tier 4 pattern (Indonesian)" },
+        "tier4PatternDescription_en": { "type": "string", "description": "Step by step instructions for Tier 4 pattern (English)" },
+        "sideDartDescription": { "type": "string", "description": "Step by step instructions for side dart (Indonesian)" },
+        "sideDartDescription_en": { "type": "string", "description": "English step by step instructions for side dart" },
+        "importantNote_id": { "type": "string", "description": "Important Pattern Notes content (Indonesian)" },
+        "importantNote_en": { "type": "string", "description": "Important Pattern Notes content (English)" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" },
+        "updatedBy": { "type": "string", "description": "User or admin who updated the asset" }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "firestore": {
+    "/calculators/{calculatorId}": {
+      "entity": "Calculator",
+      "description": "Instructional images for each specific garment pattern calculator"
+    }
+  }
+}
